@@ -1,0 +1,40 @@
+/*一个正整数 N 的因子中可能存在若干连续的数字。例如 630 
+可以分解为 3×5×6×7，其中 5、6、7 就是 3 个连续的数字。
+给定任一正整数 N，
+要求编写程序求出最长连续因子的个数，并输出最小的连续因子序列。
+输入样例：
+630
+输出样例：
+3
+5*6*7*/
+
+#include<cstdio>
+#include<cmath>
+#include<cstring>
+#define LL long long
+using namespace std;
+int main()
+{
+    LL n,a,b,x,y=-1,i,j;
+    scanf("%lld",&n);
+    LL m=(LL)sqrt(n);
+    x=n;
+    for(i=2; i<=m; i++)
+    {
+        if(n%i!=0) continue;
+        a=1;
+        for(j=i; j<=m; j++)
+        {
+            if(n%(a*j)!=0||a*j>n) break;
+            a*=j;
+        }
+        if(j-i>y) {y=j-i; x=i;}
+    }
+    if(y==-1) y=1;
+    printf("%lld\n",y);
+    printf("%lld",x);
+    for(LL t=x+1; t<y+x; t++)
+        printf("*%lld",t);
+    printf("\n");
+    return 0;
+}
