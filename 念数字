@@ -1,0 +1,58 @@
+/*输入一个整数，输出每个数字对应的拼音。当整数为负数时，先输出fu字。十个数字对应的拼音如下：
+0: ling
+1: yi
+2: er
+3: san
+4: si
+5: wu
+6: liu
+7: qi
+8: ba
+9: jiu
+输入样例：
+-600
+输出样例：
+fu liu ling ling*/
+
+
+#include <iostream>
+#include <cstdio>
+#include <algorithm>
+#include <string.h>
+#include <map>
+using namespace std;
+typedef long long ll;
+const int MAXN=1e6;
+map<char,string> m;
+void init(){
+    m['0']="ling";m['1']="yi";m['2']="er";m['3']="san";m['4']="si";m['5']="wu";
+    m['6']="liu";m['7']="qi";m['8']="ba";m['9']="jiu";
+}
+int main(){
+    init();
+    string s;
+   // cout << m['6'];
+    while(cin >> s){
+        int n=s.length();
+        //cout << n << endl;
+        if(s[0]=='-'){
+            cout << "fu"<< " ";
+            for(int i=1;i<n;i++) {
+                    if(i!=n-1)
+                    cout << m[s[i]]<< " ";
+            else cout << m[s[i]] << endl;
+            }
+        }
+        else {
+            for(int i=0;i<n;i++){
+                    if(i!=n-1)
+                    cout <<m[s[i]]<< " ";
+            else cout << m[s[i]] << endl;
+
+            }
+        }
+    }
+    return 0;
+}
+//by Evilsong7
+//2019.3.21
