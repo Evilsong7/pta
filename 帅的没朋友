@@ -1,0 +1,54 @@
+#include <iostream>
+#include <algorithm>
+#include <string.h>
+using namespace std;
+
+struct Node{
+	string id;
+	int sum;
+}node[100000+10];
+int main(){
+	int n;
+	while(cin >> n){
+		int temp=0;
+		for(int i=0;i<n;i++){
+			int m;
+			cin >> m;
+			for(int j=0;j<m;j++){
+				cin >> node[temp].id;
+				node[temp].sum=m;
+				temp++;
+			}
+		}
+		int k;
+		cin >> k;
+		//cout << temp << endl;
+		int flag5=0;
+		/*for(int p=0;p<=temp;p++){
+				cout << node[p].id << " " << node[p].sum << endl;
+			}*/
+		int ji=0;
+		for(int i=0;i<k;i++){
+			int flag=0;
+			string l;
+			cin >> l;
+			int flag4=0;
+			
+			for(int p=0;p<=temp;p++){
+				if(node[p].id==l&&node[p].sum>=2) flag4=1;
+			}
+			if(flag4==0) {
+				
+				if(ji==0)
+				cout << l ;
+				else cout << " " << l;
+				node[++temp].id=l;
+				node[temp].sum=2;
+				flag5=1;
+				ji++;
+				}
+		}
+		if(flag5==0) cout << "No one is handsome" << endl;
+	}
+	return 0;
+} 
