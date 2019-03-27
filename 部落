@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+int uset[10000+10];
+int vis[10000+10];
+int vis2[10000+10];
+void makeSet(int size) {
+    for(int i = 0;i <=size;i++)  uset[i] = i;
+}
+int find(int x) {
+    if (x != uset[x]) uset[x] = find(uset[x]);
+    return uset[x];
+}
+void unionSet(int x, int y) {
+    if ((x = find(x)) == (y = find(y))) return;
+    uset[y] = x;
+}
+set<int> v;
+int main(){
+	makeSet(10000+10);
+	int n;
+	while(cin >> n){
+		int sum=0;
+		for(int i=0;i<n;i++){
+			int m;
+			cin >> m;
+			int temp;
+			cin >> temp;
+			if(vis2[temp]==0){
+				sum++;
+				vis2[temp]++;
+			}
+			for(int j=0;j<m-1;j++){
+				int temp1;
+				cin >> temp1;
+				if(vis2[temp1]==0){
+				sum++;
+				vis2[temp1]++;
+			}
+				unionSet(temp,temp1);
+			}
+			
+		}
+		int ans=0;
+		for(int i=1;i<=sum;i++) {
+			//v.push_back(find(i));
+			if(vis[find(i)]==0) {
+				ans++;
+				vis[find(i)]=1;
+			}
+		}
+		cout << sum << " "<<ans << endl;
+		int m;
+		cin >> m;
+		for(int i=0;i<m;i++){
+			int a,b;
+			cin >> a >> b;
+			if(find(a)==find(b)) cout << "Y" <<endl;
+			else cout << "N" <<endl;
+		}
+	}
+	
+	return 0;
+} 
