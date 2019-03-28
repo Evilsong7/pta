@@ -40,9 +40,9 @@ int main()
 	while(cin >> v >> e >> k){
 		for(int i=0;i<e;i++){
 			int u,v;
-			cin >> u >> v;
+			cin >> u >> w;
 			ege[i].u=u;
-			ege[i].v=v;
+			ege[i].v=w;
 		}
 		int m;
 		cin >> m;
